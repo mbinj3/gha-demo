@@ -1,11 +1,18 @@
-name: Hello-World-Workflow
+name: CI-Workflow
 on: workflow_dispatch
 jobs:
-  Hello-World-Job:
-        runs-on: ubuntu-latest
-        steps:
-          - name: Hello-World-Step
-            run: |
-              echo "This is line 1"
-              echo "This is line 2"
-              echo "This is line 3"
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: build
+        run: echo "building the project
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: test
+        run: echo "running test cases"
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: deploy
+      run: echo "deploying the app"
