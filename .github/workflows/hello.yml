@@ -11,4 +11,4 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: build
-        run: echo "Hi, ${{vars.MY_NAME}}"
+        run: echo "Hi, ${{secrets.MY_PASSWORD}}"
