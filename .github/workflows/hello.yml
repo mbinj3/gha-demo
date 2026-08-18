@@ -1,14 +1,10 @@
 name: CI-Workflow
-on:
-  push:
-    branches:
-      - main
-  pull_request:
-    branches:
-      - main
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
-      - name: build
-        run: echo "Hi, ${{secrets.MY_PASSWORD}}"
+      - name: Check out the code
+        uses: actions/checkout@v6
+      - name: Print index.html file
+        run: cat index.html
