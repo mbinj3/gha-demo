@@ -1,10 +1,20 @@
-name: CI-Workflow
+name: Deploy App To S3
 on: push
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Check out the code
+      - name: Checkout code from repo
         uses: actions/checkout@v6
-      - name: Print index.html file
-        run: cat index.html
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v6.2.3
+        with:
+          aws-access-key-id: ${{secrets.AWS_ACCESS_KEY_ID}}
+          aws-secret-access-key: ${{secrets.AWS_SECRET_ACCESS_KEY}}
+          aws-region: eu-west-1
+      - name: Copy static code to S3
+        run: |
+          aws s3 sync ./ s3://jhc-gha-static-website-demo/ \
+          --exclude "*" \
+          --include "index.html"
+        
