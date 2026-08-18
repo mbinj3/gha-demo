@@ -1,8 +1,14 @@
 name: CI-Workflow
-on: push
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: build
-        run: echo "building the project..."
+        run: echo "building the project"
